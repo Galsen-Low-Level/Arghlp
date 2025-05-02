@@ -11,11 +11,12 @@ add_project_arguments(
     '-Winline', 
     '-Wunused-result'
     ),  
-
   language:'c'
   )
 
+inc_dir   =  include_directories('./')
 arghlp_so = shared_library('arghlp', 'arghlp.c' , soversion: meson.project_version())
+arghlp_dep= declare_dependency(link_with:arghlp_so ,include_directories:[inc_dir] ) 
 
 executable(meson.project_name() ,
            'main.c',
